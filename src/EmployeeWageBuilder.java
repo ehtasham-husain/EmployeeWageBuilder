@@ -3,15 +3,20 @@ public class EmployeeWageBuilder {
     public static final int IS_PART_TIME = 1;
     public static final int IS_FULL_TIME = 2;
     public static final int EMP_RATE_PER_HOUR = 20;
-    public static final int NUM_OF_WORKING_DAYS = 10;
+    public static final int NUM_OF_WORKING_DAYS = 20;
+    public static final int MAX_HRS_IN_MONTH = 50;
 
     public static void main(String[] args) {
 
         //variables
-        int empHrs = 0, empWage = 0, totalEmpWage = 0;
+        int  totalWorkingdays = 0,
+            totalworkingHRS = 0, totalEmpWage = 0;
 
         //Computation
-        for (int days = 1; days <= NUM_OF_WORKING_DAYS; days++ ) {
+        while (totalWorkingdays < NUM_OF_WORKING_DAYS &&
+                totalworkingHRS < MAX_HRS_IN_MONTH){
+            int empHrs = 0;
+            totalWorkingdays++;
             int EmpCheck = (int) (Math.floor(Math.random() * 10) % 3);
             System.out.println(EmpCheck);
 
@@ -25,7 +30,9 @@ public class EmployeeWageBuilder {
                 default:
                     empHrs = 0;
             }
-            empWage = empHrs * EMP_RATE_PER_HOUR;
+            totalworkingHRS += empHrs;
+            System.out.println("working hrs = "+totalworkingHRS);
+            int empWage = empHrs * EMP_RATE_PER_HOUR;
             totalEmpWage += empWage;
         }
         System.out.println("Total Employee Wage = " + totalEmpWage);
